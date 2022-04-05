@@ -1,0 +1,43 @@
+\documentclass{homework}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{ {./images/} }
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{GPGN470A HW 6: Radar Remote Sensing}
+\author{Tyler Singleton}
+
+\begin{document}
+\maketitle
+
+Question 1: \\ 
+\begin{gather*}
+    T_{\text{observed}} = \sum\limits_{i=0}^n T_i w_i
+    = T_0 w_0 + T_1 w_1 \text{ ... } T_n w_n \\ 
+    \text{where} \nonumber \\ 
+    \sum\limits_{i=0}^n w_i = 1 \\
+    \therefore \nonumber \\
+    T_{\text{observed}} = T_0 w_0 + T_1 w_1 = 119K (1-w_1) + 253K \times w_1 
+\end{gather*} \\
+
+And we have a maximum change of 0.7K.\\
+
+\begin{gather*}
+    119K - 0.7K = 119K (1-w_1) + 253K \times w_1\\
+    0.7K = 134K \times w_1 \\
+    0.00522 = w_1\\
+    \therefore \\
+    A = A_{\text{eff}} w_1 = 225km^2 \times 0.00522 = 1.16km^2
+\end{gather*} \\
+
+The smallest detectable ice floe by this instrument is $1.16km^2$. \\
+
+Question 2: \\
+
+
+
+\end{document}
