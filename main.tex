@@ -8,12 +8,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{sources.bib}
+
 \title{GPGN470A HW 6: Radar Remote Sensing}
 \author{Tyler Singleton}
 
 \begin{document}
 \maketitle
 
+% --------------- % 
 Question 1: \\ 
 \begin{gather*}
     T_{\text{observed}} = \sum\limits_{i=0}^n T_i w_i
@@ -21,23 +25,78 @@ Question 1: \\
     \text{where} \nonumber \\ 
     \sum\limits_{i=0}^n w_i = 1 \\
     \therefore \nonumber \\
-    T_{\text{observed}} = T_0 w_0 + T_1 w_1 = 119K (1-w_1) + 253K \times w_1 
+    T_{\text{observed}} = T_0 w_0 + T_1 w_1 = (119K)(1-w_1) + (253K)(w_1) 
 \end{gather*} \\
 
 And we have a maximum change of 0.7K.\\
 
 \begin{gather*}
-    119K - 0.7K = 119K (1-w_1) + 253K \times w_1\\
-    0.7K = 134K \times w_1 \\
-    0.00522 = w_1\\
+    119K - 0.7K = (119K)(1-w_1) + (253K)(w_1)\\
+    0.7K = (134K)(w_1) \\
+    0.00522 = (w_1)\\
     \therefore \\
-    A = A_{\text{eff}} w_1 = 225km^2 \times 0.00522 = 1.16km^2
+    A = A_{\text{eff}} w_1 = (225km^2)(0.00522) = 1.16km^2
 \end{gather*} \\
 
 The smallest detectable ice floe by this instrument is $1.16km^2$. \\
 
+% --------------- % 
 Question 2: \\
 
+(a) Pulse length \\
+\begin{gather*}
+    R_r = \frac{ct_p}{2 \sin \theta} \Rightarrow t_p = \frac{2R_r\sin \theta}{c} 
+    = \frac{(2)(25m)(\sin 35^\circ)}{3.00 \times 10^8 ms^{-1}} = 9.56 \times 10^{-8}s
+    \end{gather*} \\
 
+(b) Maximum swath width \\
+\begin{gather*}
+    \frac{S_w}{R_a} > \frac{c}{2v\sin\theta} \Rightarrow S_w \approx \frac{c R_a}{2v\sin\theta} 
+    \approx \frac{(3.00 \times 10^8 ms^{-1})(6m)}{(2)(7.12 \times 10^3 ms^{-1})(\sin 35^\circ)}
+    \approx 2.20 \times 10^5 m
+\end{gather*} \\
+
+(c) Difference in two-way travel time \\
+
+Since the azimuth resolution is based on the sampling rate thus (Rees 9.6.4):
+\begin{gather*}
+    \frac{1}{p} < \frac{R_a}{v} \Rightarrow \Delta T = \frac{R_a}{v} = \frac{6m}{7.12 \times 10^3 ms^{-1}} 
+    = 8.45 \times 10^{-4}s
+\end{gather*} \\
+
+(d) Min and max pulse repetition frequency (PRF)\\
+
+There are two ambiguities - azimuth and range. For the azimuth ambiguity, this is the lowest possible sampling frequency that allows for the maximum swath, which was used to calculate (b). The range ambiguity was given from here \cite{SAR}. 
+
+\begin{gather*}
+    \text{Azimuth Ambiguity}\\
+    PRF > \frac{v}{R_a} = \frac{7.12 \times 10^3 ms^{-1}}{6m} = 1190s^{-1}
+\end{gather*}
+
+\begin{gather*}
+    \text{Range Ambiguity} \\
+    PRF < \frac{cW}{2 S \lambda \tan \theta} = \frac{(3.00 \times 10^8 ms^{-1})(1.2m)}{(2)(810 \times 10^3m)(\sec 35^\circ)(0.0566m)(\tan 35^\circ)} 
+    = 6850s^{-1}
+\end{gather*}
+
+\begin{gather*}
+    \text{Min-Max}\\
+    1190\text{hz} < PRF < 6850\text{hz}
+\end{gather*} \\
+
+% --------------- % 
+Question 3: \\
+
+For real aperture radar (RAR), the azimuth resolution is dependent on the beamwidth of the antenna. A longer antenna allows for a shorter beamwidth $\beta \approx \frac{\lambda}{L}$. However, for a synthetic aperture radar (SAR), the satellite carries an antenna through the distance $vT$ which can reconstruct the signal to determine what the signal would have been with the same size antenna. This requires the signal to be coherent. The coherence width is given as (Rees 8.3.2) $w_c \approx \frac{cH}{Df}$ with H as the height of the antenna and D as the diameter. Thus the coherency of a signal is proportional to $\frac{1}{D}$, and the smaller the antenna, the more coherent the signal. \\
+
+Question 4: \\
+
+(a) \\
+The bright streak in image A, could be due to an object, such as an airplane, moving town the satellite in the azimuth direction. This will add an extra doppler shift to the signal making the spot brighter than the surrounding pixels. \\
+
+(b) \\
+For the bright bent streak in image B, this seems to be the same distortion to A; however, the object moving along both the range and azimuth axis though the coherence time. The distortion for both images is uniform, is relatively the same size, so I suspect both to a similar object.  
+
+\printbibliography
 
 \end{document}
